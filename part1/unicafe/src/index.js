@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom'
 
 
 const Statistics = (props) => {
+  if (props.totalFeedback === 0) {
+    return <p>No feedback is given</p>
+  }
   return (
     <>
-    <h1>statistics</h1>
         <p>good {props.good}</p>
         <p>neutral {props.neutral}</p>
         <p>bad {props.bad}</p>
@@ -43,6 +45,7 @@ const App = () => {
       <button onClick={handleGood} >good</button>
       <button onClick={handleNeutral} >neutral</button>
       <button onClick={handleBad} >bad</button>
+      <h1>statistics</h1>
       <Statistics good={good} bad={bad} neutral={neutral}
       totalFeedback={totalFeedback} goodPercentage={goodPercentage} />
     </div>
