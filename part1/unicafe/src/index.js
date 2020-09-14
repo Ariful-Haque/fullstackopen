@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-
-
 const App = () => {
   // save clicks of each button to own state
   const [good, setGood] = useState(0)
