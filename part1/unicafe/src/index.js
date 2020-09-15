@@ -2,19 +2,23 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
+const Statistic = ({text, value}) => {
+  return <p>{text} {value} </p>
+}
+
 const Statistics = (props) => {
   if (props.totalFeedback === 0) {
     return <p>No feedback is given</p>
   }
   return (
-    <>
-        <p>good {props.good}</p>
-        <p>neutral {props.neutral}</p>
-        <p>bad {props.bad}</p>
-        <p>all {props.totalFeedback}</p>
-        <p>average { props.totalFeedback / 3}</p>
-        <p>positive {props.goodPercentage} % </p> 
-        </>  
+    <div>
+        <Statistic text="good" value={props.good} />
+        <Statistic text="neutral" value={props.neutral} />
+        <Statistic text="bad" value={props.bad} />
+        <Statistic text="all" value={props.totalFeedback} />
+        <Statistic text="average" value={props.average} />
+        <Statistic text="positive" value={props.goodPercentage + ' ' + props.percentSign} ></Statistic>
+        </div>  
   )
 }
 
@@ -37,7 +41,9 @@ const App = () => {
   }
 
   const totalFeedback = good + bad + neutral
+  const average = totalFeedback / 3
   const goodPercentage = (good * 100) / totalFeedback
+  const percentSign = '%'
 
   return (
     <div>
@@ -47,7 +53,8 @@ const App = () => {
       <button onClick={handleBad} >bad</button>
       <h1>statistics</h1>
       <Statistics good={good} bad={bad} neutral={neutral}
-      totalFeedback={totalFeedback} goodPercentage={goodPercentage} />
+      totalFeedback={totalFeedback} average={average} goodPercentage={goodPercentage} 
+      percentSign={percentSign} />
     </div>
   )
 }
